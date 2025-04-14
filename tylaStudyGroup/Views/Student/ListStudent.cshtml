@@ -4,51 +4,127 @@
     ViewBag.Title = "List of study group members";
 }
 
-<h2>Student</h2>
+<h2>List of students</h2>
+
+@Html.ActionLink("Create New", "addPersonModel")
+<br />
+<br />
+
+@*ADDED*@
+@using (Html.BeginForm("SearchStudent", "Student", FormMethod.Post))
+{
+    <label for="SearchString">Search string</label>
+    <input type="text" name="searchQuery" id="SearchString" />
+    <button type="submit">Submit</button>
+}
 
 
-<table class="table">
-    <tr>
-        <th>
+<table class="table table-bordered" id="people">
+    <tr style="background-color: darkgreen; color: white; ">
+        <th width="16%">
             @Html.DisplayNameFor(model => model.studentName)
         </th>
-        <th>
+        <th width="16%">
             @Html.DisplayNameFor(model => model.studentSurname)
         </th>
-        <th>
+        <th width="16%">
             @Html.DisplayNameFor(model => model.studentNumber)
         </th>
-        <th>
+        <th class="text-center" width="16%">
             @Html.DisplayNameFor(model => model.studentEmail)
         </th>
+
         <th>
-            @Html.DisplayNameFor(model => model.myLink)
+            Delete
         </th>
     </tr>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            var isMatch = ViewBag.MatchingStudents != null && ((List<tylaStudyGroup.Models.StudentModel>)ViewBag.MatchingStudents).Contains(item);
+            @*<tr>*@
+            <tr style="@((isMatch ? "color: red;" : ""))">
+                <td width="16%">
+                    @Html.DisplayFor(modelItem => item.studentName)
+                </td>
+                <td width="16%">
+                    @Html.DisplayFor(modelItem => item.studentSurname)
+                </td>
+                <td width="16%">
+                    @Html.DisplayFor(modelItem => item.studentNumber)
+                </td>
+                <td class="text-center" width="16%">
+                    @Html.DisplayFor(modelItem => item.studentEmail)
+                </td>
 
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.studentName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.studentSurname)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.studentNumber)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.studentEmail)
-            </td>
-            <td>
-                <a href=@Url.Content(item.myLink) class="btn btn-primary">
-                    LINK
-                </a>
+                <td>
+                    <input id="deletePerson" type="button" value="Delete" onclick="deletePerson(this);" class="btn btn-primary text-center" />
+                </td>
 
-            </td>
+            </tr>
 
-        </tr>
+        }
+    </tbody>
+</table>
+
+<br>
+
+<button onlick="saveStudents()">Save to local storage</button>
+<button onclick="loadStudents()">Load from local storage</button>
+<button onclick="clearLocalStorage()">Clear local storage</button>
+
+<script>
+    function deletePerson(person) {
+        var i = person.parentNode.parentNode.rowIndex;
+        document.getElementById("people").deleteRow(i);
     }
 
-</table>
+    setTimeout(function () {
+        let rows = document.querySelectorAll("tr[style='color: red;']");
+        rows.forEach(row => row.style.color = "black");
+    }, 3000); // Revert color after 3 seconds
+
+
+    function saveStudents() {
+        const table = document.getElementById("people");
+        const rows = table.querySelectorAll("tbody tr");
+
+        const data = [];
+
+        rows.forEach(row => {
+            const cells = row.querySelectorAll("td");
+            const student = {
+                studentName: cells[0].innerText,
+                studentSurname: cells[1].innerText,
+                studentNumber: cells[2].innerText,
+                studentEmail: cells[3].innerText
+            };
+            data.push(student);
+        });
+
+        localStorage.setItem("studentInfo", JSON.stringify(data));
+        alert("Students information saved to localStorage");
+    }
+   
+    function loadStudents() {
+        const data = JSON.parse(localStorage.getItem("studentInfo"));
+        if (!data) return;
+
+        const tableBody = document.querySelector("#people tbody");
+        tableBody.innerHTML = "";
+
+    data.forEach(student => {
+        const row = `<tr>
+            <td>${student.studentName}</td>
+            <td>${student.studentSurname}</td>
+            <td>${student.studentNumber}</td>
+            <td>${student.studentEmail}</td>
+        </tr>`;
+        tableBody.innerHTML += row;
+    });
+}
+    function clearLocalStorage() {
+        localStorage.clear();
+        alert("Local storage cleared")
+    }
+</script>

@@ -20,8 +20,7 @@ namespace tylaStudyGroup.Models
         [Display(Name = "Student Email")]
         public string studentEmail { get; set; }
 
-        [Display(Name = "Link to personal page")]
-        public string myLink { get; set; }
+   
 
     }
 }

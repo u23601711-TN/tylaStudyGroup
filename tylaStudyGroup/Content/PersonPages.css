@@ -49,3 +49,26 @@
 .flip-horizontal img:hover{
     transform: scaleX(-1);
 }
+td, th {
+    text-align: center;
+}
+
+body {
+    background-color: darkseagreen;
+}
+
+table {
+    width: 100%;
+}
+
+.navbar {
+    background-color: lightcyan;
+}
+
+.content {
+    display: none;
+}
+
+    .content.active {
+        display: block;
+    }
