@@ -121,9 +121,11 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\StudentController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\StudentModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -143,9 +145,30 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\bootstrap.rtl.css" />
     <Content Include="Content\bootstrap.rtl.min.css" />
+    <Content Include="Content\PersonPages.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="HTML\images\download %281%29.jpeg" />
+    <Content Include="HTML\images\download %282%29.jpeg" />
+    <Content Include="HTML\images\download %283%29.jpeg" />
+    <Content Include="HTML\images\download.jpeg" />
+    <Content Include="HTML\images\images %281%29.jpeg" />
+    <Content Include="HTML\images\images %2810%29.jpeg" />
+    <Content Include="HTML\images\images %282%29.jpeg" />
+    <Content Include="HTML\images\images %283%29.jpeg" />
+    <Content Include="HTML\images\images %284%29.jpeg" />
+    <Content Include="HTML\images\images %285%29.jpeg" />
+    <Content Include="HTML\images\images %286%29.jpeg" />
+    <Content Include="HTML\images\images %287%29.jpeg" />
+    <Content Include="HTML\images\images %288%29.jpeg" />
+    <Content Include="HTML\images\images %289%29.jpeg" />
+    <Content Include="HTML\images\images.jpeg" />
+    <Content Include="HTML\Person1.html" />
+    <Content Include="HTML\Person2.html" />
+    <Content Include="HTML\Person3.html" />
+    <Content Include="HTML\Person4.html" />
+    <Content Include="HTML\Person5.html" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.esm.js" />
@@ -177,10 +200,10 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Student\ListStudent.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.rtl.min.css.map" />

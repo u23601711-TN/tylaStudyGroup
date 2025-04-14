@@ -1,0 +1,54 @@
+﻿@model IEnumerable<tylaStudyGroup.Models.StudentModel>
+
+@{
+    ViewBag.Title = "List of study group members";
+}
+
+<h2>Student</h2>
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.studentName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.studentSurname)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.studentNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.studentEmail)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.myLink)
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.studentName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.studentSurname)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.studentNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.studentEmail)
+            </td>
+            <td>
+                <a href=@Url.Content(item.myLink) class="btn btn-primary">
+                    LINK
+                </a>
+
+            </td>
+
+        </tr>
+    }
+
+</table>
